@@ -1,0 +1,347 @@
+//My Jack Game 
+//@author Noah Waller
+
+
+/** Initializes text game. */
+class TextGame {
+    field Array DeathEnd;
+    field Array Startadventure;
+    field Array Paths;
+    field Array c1;
+    field Array c2;
+    field boolean Mushroom;
+    field boolean Sword;
+    field boolean begin;
+    field boolean cave;
+    field boolean win;
+    field boolean wakeup;
+    field int x, d;
+    
+    constructor TextGame new(){
+        //death screens
+        let DeathEnd = Array.new(6);
+        let DeathEnd[0] = "Rabid Squirrel Attack!";
+        let DeathEnd[1] = "It's Poisonous!";
+        let DeathEnd[2] = "Bird Attack!";
+        let DeathEnd[3] = "Ouch...";
+        let DeathEnd[4] = "Spear Trap!";
+        let DeathEnd[5] = "Should've Brought a Sword";
+        
+        //start adventure decisions
+        let Startadventure = Array.new(2);
+        let Startadventure[0] = "Sleep";
+        let Startadventure[1] = "Wake";
+        let Startadventure[2] = "You Did it the Dragon is dead!";
+    
+        //path decisions
+        let Paths = Array.new(11);
+        let Paths[0] = "RESTART";
+        let Paths[1] = "Field";
+        let Paths[2] = "Tree";
+        let Paths[3] = "Forest";
+        let Paths[4] = "Mushroom";
+        let Paths[5] = "Nest";
+        let Paths[6] = "Zipline";
+        let Paths[7] = "Cave";
+        let Paths[8] = "Sharp";
+        let Paths[9] = "Light";
+        let Paths[10] = "Dragon!";
+        
+        //choice 1 decisions
+        let c1 = Array.new(10);
+        let c1[0] = "< Look";
+        let c1[1] = "< Bird";
+        let c1[2] = "< Floor";
+        let c1[3] = "< Taste";
+        let c1[4] = "< Egg";
+        let c1[5] = "< Ride";
+        let c1[6] = "< Torch";
+        let c1[7] = "< Panic!";
+        let c1[8] = "< Further";
+        let c1[9] = "< Fight!";
+        
+        //choice 2 decisions
+        let c2 = Array.new(10);
+        let c2[0] = "  Run >";
+        let c2[1] = "  Knot >";
+        let c2[2] = "  Canopy >";
+        let c2[3] = "  Pick >";
+        let c2[4] = "  Caw! >";
+        let c2[5] = "  Jump >";
+        let c2[6] = "  Feel >";
+        let c2[7] = "  Calm >";
+        let c2[8] = "  Leave >";
+        let c2[9] = "  Fight! >";
+        
+        let Mushroom = false;
+        let Sword = false;
+        let begin = false;
+        let cave = false;
+        let win = false;
+        let wakeup = false;
+        let x = 0;
+        let d = 0;
+       
+        
+      return this;
+   }     
+       
+    method void dispose() {
+        do Memory.deAlloc(this);
+        
+    return;
+   }
+    
+    method void END(){ 
+        do Output.moveCursor(15, 26);
+        while (~win) {
+            do Output.printString(Paths[0]);
+            }
+        return;
+        }
+        
+    function int run() {
+          var char key;  // the key currently pressed by the user
+          var int y, choice;
+             let choice = 0;
+             let key = 0;
+             // waits for a key to be pressed
+             while (key = 0){
+                let key = Keyboard.readChar();
+                //let key = Keyboard.keyPressed();
+                    }
+             
+             
+             if (key = 130) { let choice = 1; }   // left arrow
+             if (key = 132) { let choice = 2; }   // right arrow
+             if (choice = 1) { let y = 1; }
+             if (choice = 2) { let y = 2; }
+             //do advanceChoice();
+             
+             let key = 0;
+             let choice = 0;
+            
+        return (y);
+       }   
+    
+    method int Path1(){
+      do Output.moveCursor(10, 26);
+      do Output.printString(Paths[1]);
+      do Output.moveCursor(11, 26);
+      do Output.printString(c1[0]);
+      do Output.moveCursor(12, 26);
+      do Output.printString(c2[0]);
+      let x = TextGame.run();
+            if (x = 1) { 
+                do Screen.clearScreen();
+            }
+            if (x = 2) {
+                do Screen.clearScreen();
+            } 
+      return (x);
+   }
+    
+    method int Path2(){
+      do Output.moveCursor(10, 26);
+      do Output.printString(Paths[2]);
+      do Output.moveCursor(11, 26);
+      do Output.printString(c1[1]);
+      do Output.moveCursor(13, 26);
+      do Output.printString(c2[1]);
+      let x = TextGame.run();
+            if (x = 1) { 
+                do Screen.clearScreen();
+            }
+            if (x = 2) {
+                do Screen.clearScreen();
+                let d = 1;
+                do death(d);
+            } 
+      return (x);
+   }
+    
+    method int Path3(){
+      do Output.moveCursor(10, 26);
+      do Output.printString(Paths[3]);
+      do Output.moveCursor(11, 26);
+      do Output.printString(c1[2]);
+      do Output.moveCursor(12, 26);
+      do Output.printString(c2[2]);
+      let x = TextGame.run();
+            if (x = 1) { 
+                do Screen.clearScreen();
+            }
+            if (x = 2) {
+                do Screen.clearScreen();
+            } 
+      return (x);
+   }
+    
+    method int Path4(){ 
+      do Output.moveCursor(10, 26);
+      do Output.printString(Paths[4]);
+      do Output.moveCursor(11, 26);
+      do Output.printString(c1[3]);
+      do Output.moveCursor(12, 26);
+      do Output.printString(c2[3]);
+      let x = TextGame.run();
+            if (x = 1) { 
+                do Screen.clearScreen();
+                let d = 2;
+                do death(d);
+            }
+            if (x = 2) {
+                do Screen.clearScreen();
+                let Mushroom = true;
+            } 
+      return (x);
+    }
+
+    method int Path5(){
+      do Output.moveCursor(10, 26);
+      do Output.printString(Paths[5]);
+      do Output.moveCursor(11, 26);
+      do Output.printString(c1[4]);
+      do Output.moveCursor(12, 26);
+      do Output.printString(c2[4]);
+      let x = TextGame.run();
+            if (x = 1) {               
+                let d = 3;
+                do death(d);
+            }
+            if (x = 2) {
+                do Screen.clearScreen();
+                if (Mushroom){
+                    let Sword = true;
+                    }
+            } 
+      return (x);
+    }
+    
+    method int Path6(){
+      do Output.moveCursor(10, 26);
+      do Output.printString(Paths[6]);
+      do Output.moveCursor(11, 26);
+      do Output.printString(c1[5]);
+      do Output.moveCursor(12, 26);
+      do Output.printString(c2[5]);
+      let x = TextGame.run();
+            if (x = 1) { 
+                do Screen.clearScreen();
+            }
+            if (x = 2) {
+                do Screen.clearScreen();
+                let d = 4;
+                do death(d);
+            } 
+      return (x);
+   }
+    
+    method int Path7(){
+      do Output.moveCursor(10, 26);
+      do Output.printString(Paths[7]);
+      do Output.moveCursor(11, 26);
+      do Output.printString(c1[6]);
+      do Output.moveCursor(12, 26);
+      do Output.printString(c2[6]);
+      let x = TextGame.run();
+            if (x = 1) { 
+                do Screen.clearScreen();
+            }
+            if (x = 2) {
+                do Screen.clearScreen();
+            } 
+      return (x);
+   }    
+    
+    method int Path8(){
+      do Output.moveCursor(10, 26);
+      do Output.printString(Paths[8]);
+      do Output.moveCursor(11, 26);
+      do Output.printString(c1[7]);
+      do Output.moveCursor(12, 26);
+      do Output.printString(c2[7]);
+      let x = TextGame.run();
+            if (x = 1) { 
+                do Screen.clearScreen();
+                let d = 5;
+                do death(d);
+            }
+            if (x = 2) {
+                do Screen.clearScreen();
+            } 
+      return (x);
+    }
+    
+    method int Path9(){
+      do Output.moveCursor(10, 26);
+      do Output.printString(Paths[9]);
+      do Output.moveCursor(11, 26);
+      do Output.printString(c1[8]);
+      do Output.moveCursor(12, 26);
+      do Output.printString(c2[8]);
+      let x = TextGame.run();
+            if (x = 1) { 
+                do Screen.clearScreen();
+            }
+            if (x = 2) {
+                do Screen.clearScreen();
+            } 
+      return (x);
+    }
+    
+    method int Path10(){
+      do Output.moveCursor(10, 26);
+      do Output.printString(Paths[10]);
+      do Output.moveCursor(11, 26);
+      do Output.printString(c1[9]);
+      do Output.moveCursor(12, 26);
+      do Output.printString(c2[9]);
+      let x = TextGame.run();
+            if (x = 1) { 
+                do Screen.clearScreen();
+                if (Sword) {
+                    let win = true;}
+                    else { let d = 5; do death(d); }
+            }
+            if (x = 2) {
+                do Screen.clearScreen();
+                if (Sword) {
+                    let win = true;}
+                    else { let d = 5; do death(d);  }
+                       
+            } 
+      return (x);
+    }
+    
+    method void death(int d) {
+        if (d = 1){ 
+            do Output.moveCursor(14, 26);
+            do Output.printString(DeathEnd[0]);
+            do END();
+            }
+        if (d = 2) {
+            do Output.moveCursor(14, 26);
+            do Output.printString(DeathEnd[1]);
+            do END();
+            }
+        if (d = 3) {
+            do Output.moveCursor(14, 26);
+            do Output.printString(DeathEnd[2]);
+            do END();
+            }    
+        if (d = 4) {
+            do Output.moveCursor(14, 26);
+            do Output.printString(DeathEnd[3]);
+            do END();
+            }
+        if (d = 5) {
+            do Output.moveCursor(14, 26);
+            do Output.printString(DeathEnd[4]);
+            do END();
+            }
+            
+     return;
+   }
+
+ } 

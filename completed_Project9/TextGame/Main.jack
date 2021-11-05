@@ -1,0 +1,73 @@
+//My Jack Game 
+//@author Noah Waller
+
+
+/** Initializes text game. */
+class Main {
+
+
+    function void main() {
+        var TextGame textgame;
+        var int z;
+        var Array mainText;
+        var boolean wakeup, win, cave;
+        let textgame = TextGame.new();
+        let wakeup = false;
+        let cave = false;
+        let win = false;
+        let z = 0;
+        let mainText = Array.new(4);
+        let mainText[0] = "Morning";
+        let mainText[1] = "< Sleep";
+        let mainText[2] = "Wake >";
+        let mainText[3] = "You Did it the Dragon is Dead!";
+       
+        while (~wakeup) {
+            do Output.moveCursor(10, 26);
+            do Output.printString(mainText[0]);
+            do Output.moveCursor(11, 26);
+            do Output.printString(mainText[1]);
+            do Output.moveCursor(12, 26);
+            do Output.printString(mainText[2]);
+            let z = TextGame.run();
+            if (z = 1) { 
+                do Screen.clearScreen();
+            } else {
+                let wakeup = true;
+                do Screen.clearScreen();
+                }
+        }
+          
+            //path 1 (loops back during iterations)
+         while (~win){
+          let cave = false;
+          let z = textgame.Path1();
+          if (z = 1) {
+             let z = textgame.Path2(); //path 2 path 5 or death
+             let z = textgame.Path5(); //path 5 loops back or death
+            }
+          if (z = 2) {
+              let z = textgame.Path3();} //path 3
+              else {
+                let z = textgame.Path4();} //death or mushroom = true and loop
+              if (z = 2){
+                let z = textgame.Path6();}    //death or path 7
+                while (~cave){
+                let z = textgame.Path7();
+                    if (z = 1) {
+                    let z = textgame.Path9();
+                        if (z = 1){
+                            let z = textgame.Path10();
+                            let win = true;
+                            }  else { let cave = true;
+                        }                     
+                    }   else { let z = textgame.Path8();} 
+                } 
+        do Output.moveCursor(13, 26);
+        do Output.printString(mainText[3]);              
+        do textgame.dispose();
+        return;
+        } 
+    }  
+
+}
